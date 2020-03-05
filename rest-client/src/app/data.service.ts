@@ -11,7 +11,7 @@ export class DataService {
     return this.http.get<Book[]>("/books")
   }
 
-  getBook(isbn: string) : Observable<any> {
+  getBook(isbn: string) : Observable<Book> {
     return this.http.get<Book>(`books/$isbn`)
   }
 
