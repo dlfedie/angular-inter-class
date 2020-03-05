@@ -7,10 +7,10 @@ import { catchError, tap, retryWhen, delay, scan } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private http: HttpClient) { }
-
+  
   bookCache: {[isbn: string]: Book} = {}
   
+  constructor(private http: HttpClient) { }
 
   getBooks() : Observable<Book[]> {
     return this.http.get<Book[]>("/books")
@@ -33,7 +33,7 @@ export class DataService {
       tap(_ => delete this.bookCache[isbn]),
       catchError((err:HttpErrorResponse) => {
         console.log(err);
-        if (err.status == 504) {
+        if(err.status == 504) {
           return throwError("Oops! Please check your network connection and try again.")
         } else {
           return throwError("Sorry, there was a problem at the server.")
