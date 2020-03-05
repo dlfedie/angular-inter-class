@@ -12,15 +12,15 @@ export class DataService {
   }
 
   getBook(isbn: string) : Observable<Book> {
-    return this.http.get<Book>(`books/$isbn`)
+    return this.http.get<Book>(`books/${isbn}`)
   }
 
   deleteBook(isbn: string) : Observable<any> {
-    return this.http.delete(`/books/$isbn`)
+    return this.http.delete(`/books/${isbn}`)
   }
 
   saveBook(book: Book) : Observable<any> {
-    return this.http.put(`/books/$(book.isbn)`, book)
+    return this.http.put(`/books/${book.isbn}`, book)
   }
 
   constructor(private http: HttpClient) { }

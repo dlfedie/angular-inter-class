@@ -8,7 +8,7 @@ import { DataService, Book } from '../data.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  books:Book[] = [];
+  books:Book[] = []
 
   deleteBook(book: Book) {
     if(!window.confirm('Are you sure you want to delete this item?')) {
