@@ -10,6 +10,14 @@ import { DataService, Book } from '../data.service';
 export class BookListComponent implements OnInit {
   books:Book[] = []
 
+  constructor(private dataService: DataService) { }
+
+  ngOnInit() {
+    this.dataService.getBooks().subscribe(bookList => {
+      this.books = bookList
+    })
+  }
+
   deleteBook(book: Book) {
     if(!window.confirm('Are you sure you want to delete this item?')) {
       return
@@ -24,12 +32,8 @@ export class BookListComponent implements OnInit {
     })
   }
 
-  constructor(private dataService: DataService) { }
+  
 
-  ngOnInit() {
-    this.dataService.getBooks().subscribe(bookList => {
-      this.books = bookList
-    })
-  }
+  
 
 }

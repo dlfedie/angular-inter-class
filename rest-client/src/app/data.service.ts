@@ -7,12 +7,12 @@ import { catchError, tap, retryWhen, delay, scan } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
+  constructor(private http: HttpClient) { }
+
   bookCache: {[isbn: string]: Book} = {}
   
 
   getBooks() : Observable<Book[]> {
-    
-
     return this.http.get<Book[]>("/books")
   }
 
@@ -48,7 +48,7 @@ export class DataService {
     )
   }
 
-  constructor(private http: HttpClient) { }
+  
 }
 
 export class Book {
