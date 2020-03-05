@@ -1,25 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
+import { catchError, tap, retryWhen, delay, scan } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  bookCache: {[isbn: string]: Book} = {}
+  
 
   getBooks() : Observable<Book[]> {
+    
+
     return this.http.get<Book[]>("/books")
   }
 
   getBook(isbn: string) : Observable<Book> {
-    return this.http.get<Book>(`books/${isbn}`)
+    let cachedBook = this.bookCache[isbn];
+    if (cachedBook !== undefined) {
+      console.log('Got a cache hit');
+      return of(cachedBook)
+    }
+    return this.http.get<Book>(`books/${isbn}`).pipe(
+      tap(book => this.bookCache[isbn] = book) //populate cache
+    )
   }
 
   deleteBook(isbn: string) : Observable<any> {
     return this.http.delete(`/books/${isbn}`).pipe(
       catchError((err:HttpErrorResponse) => {
-        if (err.status == 0) {
+        console.log(err);
+        if (err.status == 504) {
           return throwError("Oops! Please check your network connection and try again.")
         } else {
           return throwError("Sorry, there was a problem at the server.")
