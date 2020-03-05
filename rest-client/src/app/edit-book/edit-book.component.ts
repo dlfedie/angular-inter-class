@@ -20,8 +20,8 @@ export class EditBookComponent implements OnInit {
 
 
   constructor(private dataService: DataService,
-    private activeRoute: ActivatedRoute,
-    private router: Router) { }
+              private activeRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activeRoute.params.subscribe(params => {
