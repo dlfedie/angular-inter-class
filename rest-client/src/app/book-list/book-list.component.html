@@ -1,4 +1,7 @@
 <h3>Book Library</h3>
+<div>
+  <button [routerLink]="['/add-book']">Add a Book</button>
+</div>
 
 <div *ngIf="books.length > 0">
   <div *ngFor="let book of books">
