@@ -7,6 +7,6 @@
   <div *ngFor="let book of books">
     {{book.isbn}} - {{book.title}} <b>{{book.price}}</b>
     <button (click)="deleteBook(book)">DELETE</button>
-    <button [routerLink]="['/edit-book', book.isbn"]>EDIT</button>
+    <button [routerLink]="['/edit-book', book.isbn]">EDIT</button>
   </div>
 </div>
