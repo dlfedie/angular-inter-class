@@ -20,7 +20,7 @@ export class BookListComponent implements OnInit {
       this.books = this.books.filter(b => b.isbn !== book.isbn)
     },
     err => {
-      alert("Oops! There was a problem at the server.")
+      alert(err)
     })
   }
 
