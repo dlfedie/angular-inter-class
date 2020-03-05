@@ -8,7 +8,10 @@ import { DataService, Book } from '../data.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  books:Book[] = []
+  books:Book[] = [];
+
+  private page = 1;
+  private pageSize = 4;
 
   constructor(private dataService: DataService) { }
 
@@ -16,6 +19,12 @@ export class BookListComponent implements OnInit {
     this.dataService.getBooks().subscribe(bookList => {
       this.books = bookList
     })
+  }
+
+  getDisplayList() : Book[] {
+    return this.books.slice(
+      (this.page - 1) * this.pageSize, this.page * this.pageSize
+    )
   }
 
   deleteBook(book: Book) {

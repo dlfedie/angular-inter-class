@@ -4,9 +4,11 @@
 </div>
 
 <div *ngIf="books.length > 0">
-  <div *ngFor="let book of books">
+  <div *ngFor="let book of getDisplayList()">
     {{book.isbn}} - {{book.title}} <b>{{book.price}}</b>
-    <button class="btn-danger" (click)="deleteBook(book)">DELETE</button>
-    <button [routerLink]="['/edit-book', book.isbn]">EDIT</button>
+    <button placement="top" ngbTooltip="Delete the book" class="btn-danger" (click)="deleteBook(book)">DELETE</button>
+    <button placement="top" ngbTooltip="Edit the book" [routerLink]="['/edit-book', book.isbn]">EDIT</button>
   </div>
+  <ngb-pagination [collectionSize]="books.length" [pageSize]="pageSize"
+    [(page)]="page"></ngb-pagination>
 </div>

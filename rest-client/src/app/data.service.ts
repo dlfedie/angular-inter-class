@@ -29,10 +29,10 @@ export class DataService {
   }
 
   deleteBook(isbn: string) : Observable<any> {
-    return this.http.delete(`/books/${isbn}`).pipe(
+    return this.http.delete(`/books/bad-url/${isbn}`).pipe(
       tap(_ => delete this.bookCache[isbn]),
       catchError((err:HttpErrorResponse) => {
-        console.log(err);
+        console.log('error here:', err);
         if(err.status == 504) {
           return throwError("Oops! Please check your network connection and try again.")
         } else {
