@@ -3,5 +3,6 @@
 <div *ngIf="books.length > 0">
   <div *ngFor="let book of books">
     {{book.isbn}} - {{book.title}} <b>{{book.price}}</b>
+    <button (click)="deleteBook(book)">DELETE</button>
   </div>
 </div>
