@@ -10,6 +10,17 @@ import { DataService, Book } from '../data.service';
 export class BookListComponent implements OnInit {
   books:Book[] = [];
 
+  deleteBook(book: Book) {
+    if(!window.confirm('Are you sure you want to delete this item?')) {
+      return
+    }
+
+    this.dataService.deleteBook(book.isbn).subscribe(_ => {
+      // delete local copy of book
+      this.books = this.books.filter(b => b.isbn !== book.isbn)
+    })
+  }
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
