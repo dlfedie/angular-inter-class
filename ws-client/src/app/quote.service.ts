@@ -7,8 +7,28 @@ import * as io from 'socket.io-client';
   providedIn: 'root'
 })
 export class QuoteService {
+  socket: any;
 
   constructor() { }
+
+  getQuotes() : Observable<Quote> {
+    const observable = Observable.create(
+      (observer: Subscriber<Quote>) => {
+        this.socket = io('ws://localhost:4200');
+
+        this.socket.emit('getquotes', 'start');
+
+        this.socket.on('newquote', (data: string) => {
+          observer.next(JSON.parse(data))
+        });
+      }
+    );
+    return observable;
+  }
+
+  disconnect() {
+    this.socket.disconnect();
+  }
 }
 
 export class Quote {
