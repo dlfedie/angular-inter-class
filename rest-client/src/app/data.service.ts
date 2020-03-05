@@ -23,12 +23,14 @@ export class DataService {
       return of(cachedBook)
     }
     return this.http.get<Book>(`books/${isbn}`).pipe(
-      tap(book => this.bookCache[isbn] = book) //populate cache
+      tap(book => this.bookCache[isbn] = book), //populate cache
+      catchError(err => cachedBook ? of(cachedBook) : throwError(err))
     )
   }
 
   deleteBook(isbn: string) : Observable<any> {
     return this.http.delete(`/books/${isbn}`).pipe(
+      tap(_ => delete this.bookCache[isbn]),
       catchError((err:HttpErrorResponse) => {
         console.log(err);
         if (err.status == 504) {
@@ -41,7 +43,9 @@ export class DataService {
   }
 
   saveBook(book: Book) : Observable<any> {
-    return this.http.put(`/books/${book.isbn}`, book)
+    return this.http.put(`/books/${book.isbn}`, book).pipe(
+      tap(_ => this.bookCache[book.isbn] = book)
+    )
   }
 
   constructor(private http: HttpClient) { }
