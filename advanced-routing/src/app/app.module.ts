@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { RouteErrorComponent } from './error/route.error.component';
+import { ProductsModule } from './products/products.module';
 
 import { AuthService } from './auth.service';
 
@@ -20,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     FormsModule,
     HttpModule,
+    ProductsModule,
     AppRoutingModule
   ],
   declarations: [
