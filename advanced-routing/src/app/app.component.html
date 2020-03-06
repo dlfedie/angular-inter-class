@@ -1,8 +1,8 @@
 <h1>{{title}}</h1>
 <div>
-  <input type=button [routerLink]="['/home']" value="Home" >
-  <input type=button [routerLink]="['/about']" value="About" >
-  <input type=button [routerLink]="['/admin']" value="Admin" >
+  <input type=button [routerLink]="['/home']" value="Home" routerLinkActive="active" />
+  <input type=button [routerLink]="['/about']" value="About" routerLinkActive="active" />
+  <input type=button [routerLink]="['/admin']" value="Admin" routerLinkActive="active" />
 </div>
 <main>
     <router-outlet></router-outlet>
