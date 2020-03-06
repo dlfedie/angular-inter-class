@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditBookComponent implements OnInit {
   book: Book;
 
+
   updateBook() {
     this.dataService.saveBook(this.book).subscribe(book => {
       // go back to homepage
