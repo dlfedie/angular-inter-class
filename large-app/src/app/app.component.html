@@ -1,7 +1,7 @@
-<a href [routerLink]="['/']">Home</a>&nbsp;
-<a href [routerLink]="['/catalog']">Shop</a>&nbsp;
-<a href [routerLink]="['/account']">My Account</a>&nbsp;
-<a href [routerLink]="['/account/orders']">My Orders</a>&nbsp;
-<a href [routerLink]="['/account/address']">Address Book</a>&nbsp;
+<a href [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>&nbsp;
+<a href [routerLink]="['/catalog']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Shop</a>&nbsp;
+<a href [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">My Account</a>&nbsp;
+<a href [routerLink]="['/account/orders']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">My Orders</a>&nbsp;
+<a href [routerLink]="['/account/address']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Address Book</a>&nbsp;
 
 <router-outlet></router-outlet>
