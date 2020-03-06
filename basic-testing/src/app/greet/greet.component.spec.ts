@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SimpleService } from '../simple.service';
+import { FormsModule } from '@angular/forms';
 
 import { GreetComponent } from './greet.component';
 
@@ -8,9 +10,11 @@ describe('GreetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GreetComponent ]
+      declarations: [GreetComponent],
+      imports: [FormsModule],
+      providers: [SimpleService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +26,10 @@ describe('GreetComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should get greeting', () => {
+    component.userName = 'Daffy Duck'
+    
+    expect(component.getGreeting()).toBe('Hello Daffy Duck')
+  })
 });
