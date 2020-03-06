@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import * as io from 'socket.io-client';
 
+export class Quote {
+  ticker: string
+  exchange: string
+  price: string
+  change: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +37,4 @@ export class QuoteService {
   }
 }
 
-export class Quote {
-  ticker: string
-  exchange: string
-  price: string
-  change: string
-}
+
