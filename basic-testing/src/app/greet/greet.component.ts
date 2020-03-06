@@ -9,6 +9,10 @@ import { SimpleService } from '../simple.service';
 export class GreetComponent implements OnInit {
   userName:string = '';
 
+  numberA = 0
+  numberB = 0
+  addResult = 0
+
   constructor(private service: SimpleService) { }
 
   ngOnInit() {
@@ -16,6 +20,11 @@ export class GreetComponent implements OnInit {
 
   getGreeting() : string {
     return this.service.sayHello(this.userName)
+  }
+
+  add() {
+    this.service.addNumbers(this.numberA, this.numberB)
+      .subscribe((result) => this.addResult = result)
   }
 
 }
