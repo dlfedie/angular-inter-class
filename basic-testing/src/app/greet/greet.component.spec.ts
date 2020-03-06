@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SimpleService } from '../simple.service';
 import { FormsModule } from '@angular/forms';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { GreetComponent } from './greet.component';
 
@@ -42,4 +44,20 @@ describe('GreetComponent', () => {
       .toBe('Hello Bob');
   });
   
+  it('adds numbers, testing button', () => {
+    component.numberA = 10
+    component.numberB = 20
+
+    //sim button click
+    let button:DebugElement =
+      fixture.debugElement.query(By.css("button"))
+
+    button.triggerEventHandler("click", null)
+
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('div').textContent)
+      .toBe('30');
+  });
+
 });
