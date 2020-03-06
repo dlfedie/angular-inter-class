@@ -31,5 +31,15 @@ describe('GreetComponent', () => {
     component.userName = 'Daffy Duck'
     
     expect(component.getGreeting()).toBe('Hello Daffy Duck')
-  })
+  });
+
+  it('handle state change', () => {
+    component.userName = 'Bob'
+
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('p').textContent)
+      .toBe('Hello Bob');
+  });
+  
 });
