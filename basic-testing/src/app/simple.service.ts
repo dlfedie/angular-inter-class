@@ -16,5 +16,5 @@ export class SimpleService {
     return of(a + b);
   }
 
-  
+
 }

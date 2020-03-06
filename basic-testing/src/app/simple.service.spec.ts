@@ -19,6 +19,6 @@ describe('SimpleService', () => {
     let name = 'Bob';
     let greeting = service.sayHello(name)
 
-    expect(greeting).toBe(`Hello $(name)`)
+    expect(greeting).toBe(`Hello ${name}`)
   })
 });
