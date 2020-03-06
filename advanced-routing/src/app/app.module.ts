@@ -9,6 +9,8 @@ import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { RouteErrorComponent } from './error/route.error.component';
 
+import { AuthService } from './auth.service';
+
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -28,7 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
     RouteErrorComponent
   ],
 
-  providers: [  ],
+  providers: [ AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
