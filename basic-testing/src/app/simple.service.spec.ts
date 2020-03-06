@@ -16,9 +16,17 @@ describe('SimpleService', () => {
   });
 
   it('should call sayHello', () => {
-    let name = 'Bob';
+    let name = 'Bob'
     let greeting = service.sayHello(name)
 
     expect(greeting).toBe(`Hello ${name}`)
-  })
+  });
+
+  it('should add the numbers', (done) => {
+    service.addNumbers(3, 4).subscribe((result) => {
+      expect(result).toBe(7)
+      done()
+    })
+  });
+
 });
